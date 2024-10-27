@@ -8,7 +8,7 @@ extends Node3D
 
 @onready var spawn_timer = $Timer
 
-
+var instance
 
 
 # Called when the node enters the scene tree for the first time.
@@ -26,6 +26,16 @@ func _process(delta):
 
 func _on_timer_timeout():
 	print("spawning an enemy")
+	instance = enemy_to_spawn.instantiate()
+	instance.position = position
+	print("shooting")
+	print(instance.position)
+	get_parent().add_child(instance)
+		
 	print(number_of_enemies ,"left")
-	spawn_timer.wait_time = spawn_interval
 	number_of_enemies = number_of_enemies -1
+	spawn_timer.stop()
+	if number_of_enemies > 0:
+		spawn_timer.wait_time = spawn_interval
+		spawn_timer.start()
+		

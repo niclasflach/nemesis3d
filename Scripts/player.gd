@@ -10,7 +10,7 @@ const SPEED = 45.0
 const ACCELERATION = 5
 const FRICTION = 2
 
-var laser = load("res://laser.tscn")
+var laser = load("res://Scenes/laser.tscn")
 var instance
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
