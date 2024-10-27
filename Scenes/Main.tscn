@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=3 uid="uid://cl2a102pm61lh"]
+
+[ext_resource type="PackedScene" uid="uid://b2th5drl5tyav" path="res://Scenes/player.tscn" id="1_ml4n0"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="2_61wh1"]
+[ext_resource type="PackedScene" uid="uid://b7ga4cgku0beu" path="res://resources/models/bar.glb" id="3_bcble"]
+[ext_resource type="PackedScene" uid="uid://y7ewdeioslwd" path="res://resources/models/wall.glb" id="4_gadpw"]
+[ext_resource type="Script" path="res://Scripts/BackLimit.gd" id="5_mttjg"]
+[ext_resource type="PackedScene" uid="uid://c0gkc7fr6fiqo" path="res://Scenes/Pipe_spawener.tscn" id="6_7ako5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kl21e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_13gw5"]
+size = Vector3(1, 1, 30.9766)
+
+[node name="Main" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ml4n0")]
+script = ExtResource("2_61wh1")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -197.198, 0, 122.31)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.56322, 18.6, 38.3052)
+physics_material_override = SubResource("PhysicsMaterial_kl21e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23755, 0, -14.9883)
+shape = SubResource("BoxShape3D_13gw5")
+
+[node name="bar" parent="StaticBody3D" instance=ExtResource("3_bcble")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.67601, 2.16387, 0.139648)
+
+[node name="bar2" parent="StaticBody3D" instance=ExtResource("3_bcble")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33335, 2.16387, 0.139648)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.56322, 15.2188, 109.029)
+physics_material_override = SubResource("PhysicsMaterial_kl21e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23755, 0, -14.9883)
+shape = SubResource("BoxShape3D_13gw5")
+
+[node name="bar" parent="StaticBody3D2" instance=ExtResource("3_bcble")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.67601, 2.16387, 0.139648)
+
+[node name="bar2" parent="StaticBody3D2" instance=ExtResource("3_bcble")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33335, 2.16387, 0.139648)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.0975, 4.15807)
+light_energy = 6.189
+shadow_enabled = true
+omni_range = 226.776
+omni_attenuation = 0.535887
+omni_shadow_mode = 0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.8708, 96.0378)
+light_energy = 6.189
+shadow_enabled = true
+omni_range = 226.776
+omni_attenuation = 0.535887
+omni_shadow_mode = 0
+
+[node name="wall" parent="." instance=ExtResource("4_gadpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8335, -11.1, 58.6498)
+
+[node name="wall2" parent="." instance=ExtResource("4_gadpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8335, 15.0149, 58.6498)
+
+[node name="wall3" parent="." instance=ExtResource("4_gadpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8335, -11.1, 129.324)
+
+[node name="wall4" parent="." instance=ExtResource("4_gadpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8335, 15.0149, 129.324)
+
+[node name="wall5" parent="." instance=ExtResource("4_gadpw")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 16.8335, -104.868, 561.496)
+
+[node name="BackLimit" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -126.299)
+script = ExtResource("5_mttjg")
+
+[node name="PipeSpawener" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_7ako5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.166016, 20.2324, 98)
+player = NodePath("../Player")

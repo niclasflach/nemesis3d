@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqyjbk68keldh"]
+
+[ext_resource type="PackedScene" uid="uid://dk4qs30mg6xwb" path="res://resources/models/mine.glb" id="1_5hyx5"]
+
+[node name="EnemyMine" type="Node3D"]
+
+[node name="mine" parent="." instance=ExtResource("1_5hyx5")]

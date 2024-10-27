@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0gkc7fr6fiqo"]
+
+[ext_resource type="Script" path="res://Scripts/Pipe_spawener.gd" id="1_rw4kf"]
+[ext_resource type="PackedScene" uid="uid://b8gm8xeolipgy" path="res://resources/models/pipe_spawner.glb" id="2_amqrt"]
+[ext_resource type="PackedScene" uid="uid://cqyjbk68keldh" path="res://Scenes/enemy_mine.tscn" id="2_he533"]
+
+[node name="PipeSpawener" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+script = ExtResource("1_rw4kf")
+enemy_to_spawn = ExtResource("2_he533")
+
+[node name="pipe_spawner" parent="." instance=ExtResource("2_amqrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2th5drl5tyav"]
+
+[ext_resource type="PackedScene" uid="uid://c3cfq32h1yq5n" path="res://resources/models/ship_a.glb" id="1_7j3qm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ruow"]
+size = Vector3(8.7533, 1.51996, 7.51831)
+
+[node name="Player" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0598755, 0.259979, 1.89661)
+shape = SubResource("BoxShape3D_0ruow")
+
+[node name="ship_a" parent="." instance=ExtResource("1_7j3qm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.862152)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.616943, 4.16702)
+light_energy = 8.243
+light_indirect_energy = 2.946
+light_size = 0.216
+light_specular = 2.41
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 980.97
+distance_fade_length = 867.95
+spot_range = 107.013
